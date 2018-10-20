@@ -1,0 +1,43 @@
+.root{
+	-fx-border-color: blue;
+	-fx-font-family: monospace;
+	-fx-font-weight: bold;
+	-fx-font-size: 30pt;
+	-fx-background-color: #cce6ff;
+}
+.hbox-htTop{
+	-fx-border-color: yellow;
+	-fx-border-style: dotted;
+	-fx-height: 400;
+	//-fx-background-color:  linear-gradient(#e66465, #9198e5);
+	-fx-background-color: linear-gradient( #3f87a6, #ebf8e1, #f69d3c);
+
+}
+.button{
+	-fx-background-color: #cfd9e2;
+	-fx-background-radius: 12pt;
+	-fx-margin: 20;
+}
+#btnorth-button{
+}
+#bteast-button{
+}
+#btsouth-button{
+}
+#btwest-button{
+}
+.vbox-vbRight{
+
+-fx-alignment: center;
+}
+.hbox-hbBottom{
+-fx-spacing: 20;
+-fx-font-size: 15pt;
+-fx-padding: 18pt;
+
+}
+
+.vbox-vbLeft{
+ -fx-alignment: top;
+ -fx-width: 20%;
+}
