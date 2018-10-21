@@ -1,6 +1,8 @@
 package gui;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 
 public class GUI extends Application{
    final private int windowWidth = 1400; // width of Window
@@ -35,10 +38,19 @@ public class GUI extends Application{
    Label lbDetails;
    Button btLaunchCM;
    Button btViewInstructions;
+   public static final ObservableList<String> data = 
+   FXCollections.observableArrayList();
+	       
+   ListView<String> listView;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		
+		listView = new ListView<String>(data);
+		listView.setPrefHeight(900.0);
+		listView.setPrefWidth(350);
+		//listView.setEditable(true);
+		//listView.setPrefSize(200, 250);
 		insets = new Insets(5,5, 5,5); //insets to set margin to nodes
 		//Button btViewInstr = new Button("Create Account");
 		//Button btLaunchCM = new Button("Create Account");
@@ -46,7 +58,7 @@ public class GUI extends Application{
 		btLaunchCM = new Button("Launch Command Menu");
 		vbRight = new VBox();
 		lbTitle = new Label("WELCOME TO CITADEl OF STORMS");
-		lbDetails = new Label("DETAILS");
+		lbDetails = new Label("GAME-DETAILS");
 		btExit = new Button("Exit");
 		btNorth = new Button("N");
 		btNorth.setAlignment(Pos.BASELINE_CENTER);
@@ -62,7 +74,8 @@ public class GUI extends Application{
 		hbWestEast.setSpacing(20);
 		hbWestEast.setAlignment(Pos.BASELINE_LEFT);
 		btUpperFloor = new Button("Upper-Floor");
-		btLowerFloor = new Button("Lowerr-Floor");
+		btLowerFloor = new Button("Lower-Floor");
+		
 	
 		hbTop = new HBox();
 		hbTop.setPrefWidth(1.0);
@@ -75,10 +88,17 @@ public class GUI extends Application{
 		
 		
 		vbLeft = new VBox();
-		lbDetails.getStyleClass().add("hbox-htTop");
+		lbDetails.getStyleClass().addAll("hbox-htTop", "list-cell");
+		 data.addAll(
+		             "Username:", "Curren-Room: ", "HealthPoint: ", "Gems:", "Moster defeated:"
+		            
+		        ); //This is where all the details of the player goes to.
+		 listView.setItems(data);
+		 listView.getStyleClass().addAll("hbox-htTop");
 		
-		vbLeft.getChildren().add(lbDetails);
-		vbLeft.getStyleClass().addAll("hbox-htTop");
+		
+		vbLeft.getChildren().addAll(lbDetails, listView);
+		vbLeft.getStyleClass().addAll("hbox-htTop", "vbox-vbLeft");
 		
 		//gpRight.getChildren().addAll(btNorth,hbWestEast, btSouth);
 		//gpRight.setSpacing(20);
