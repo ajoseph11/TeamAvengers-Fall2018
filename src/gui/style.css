@@ -11,7 +11,14 @@
 	-fx-border-style: dotted;
 	-fx-background-color: linear-gradient(#3f87a6, #ebf8e1, #f69d3c);
 }
-
+#lbDetails{
+	-fx-background-color: #cfd9e2;
+	-fx-background-radius: 0pt;
+	-fx-padding: 12;
+		-fx-background-color: linear-gradient(#3f87a6, #ebf8e1, #f69d3c);
+	
+	
+}
 .button{
 	-fx-background-color: #cfd9e2;
 	-fx-background-radius: 12pt;
