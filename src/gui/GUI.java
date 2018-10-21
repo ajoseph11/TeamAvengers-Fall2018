@@ -89,6 +89,7 @@ public class GUI extends Application{
 		
 		vbLeft = new VBox();
 		lbDetails.getStyleClass().addAll("hbox-htTop", "list-cell");
+		
 		 data.addAll(
 		             "Username:", "Curren-Room: ", "HealthPoint: ", "Gems:", "Moster defeated:"
 		            

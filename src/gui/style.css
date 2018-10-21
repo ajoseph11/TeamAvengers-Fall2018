@@ -1,10 +1,15 @@
-
 	.root{
-	-fx-border-color: blue;
+	-fx-border-color:blue;
 	-fx-font-family: monospace;
 	-fx-font-weight: bold;
 	-fx-font-size: 30pt;
 	-fx-background-color: #cce6ff;
+}
+
+.hbox-htTop{
+	-fx-border-color: black;
+	-fx-border-style: dotted;
+	-fx-background-color: linear-gradient(#3f87a6, #ebf8e1, #f69d3c);
 }
 
 .button{
