@@ -75,8 +75,8 @@ public class GUI extends Application{
 		//listView.setPrefSize(200, 250);
 		btNav = new Button("NAVIGATION");
 		btDetails = new Button("GAME-DETAILS");
-		btClearNav = new Button("Clear Nav Bar");
-		btClearDetails = new Button("Clear Game Details");
+		btClearNav = new Button("Clear Navigation");
+		btClearDetails = new Button("Clear Details");
 		insets = new Insets(5,5, 5,5); //insets to set margin to nodes
 		//Button btViewInstr = new Button("Create Account");
 		//Button btLaunchCM = new Button("Create Account");
@@ -110,7 +110,7 @@ public class GUI extends Application{
 		hbTop.getChildren().add(lbTitle);
 		hbTop.setAlignment(Pos.CENTER);
 		
-		insets = new Insets(70, 10, 70, 10);
+		insets = new Insets(50, 10, 50, 10);
 		gpNav = new GridPane();
 		
 		
