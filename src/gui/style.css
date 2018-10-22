@@ -30,7 +30,9 @@
 .button{
 	-fx-background-color: #cfd9e2;
 	-fx-background-radius: 12pt;
-	-fx-margin: 20;
+	
+	
+	
 }
 
 .button:hover{
@@ -53,8 +55,9 @@
 
 .hbox-hbBottom{
 -fx-spacing: 20;
--fx-font-size: 15pt;
--fx-padding: 18pt;
+-fx-font-size: 13pt;
+-fx-padding: 28pt;
+-fx-margin: 20;
 
 }
 
@@ -74,4 +77,10 @@
 .list-cell{
 -fx-font-size: 12pt;
 -fx-font-family: Serif;
+}
+
+#txtErrorMsg {
+  
+		
+	
 }

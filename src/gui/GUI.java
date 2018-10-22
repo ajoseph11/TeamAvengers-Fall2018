@@ -1,5 +1,9 @@
 package gui;
 
+import java.awt.Color;
+
+import javax.swing.Box;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -9,6 +13,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -41,6 +49,10 @@ public class GUI extends Application{
    Button btViewInstructions;
    Button btNav;
    Button btDetails;
+   Button btClearNav;
+   Button btClearDetails;
+  
+   Text  txtErrorMsg;
    public static final ObservableList<String> data = 
    FXCollections.observableArrayList();
 	       
@@ -49,6 +61,13 @@ public class GUI extends Application{
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		
+		txtErrorMsg = new Text();
+		txtErrorMsg.setId("#txtErrorMsg");
+		txtErrorMsg.setStrokeWidth(20);
+		txtErrorMsg.setUnderline(true);
+		
+		//txtErrorMsg.setFont(Font.font("Serif", FontWeight.LIGHT,20 ));
+		txtErrorMsg.setFont(Font.font("Serif", FontPosture.ITALIC, 20));
 		listView = new ListView<String>(data);
 		listView.setPrefHeight(900.0);
 		listView.setPrefWidth(350);
@@ -56,6 +75,8 @@ public class GUI extends Application{
 		//listView.setPrefSize(200, 250);
 		btNav = new Button("NAVIGATION");
 		btDetails = new Button("GAME-DETAILS");
+		btClearNav = new Button("Clear Nav Bar");
+		btClearDetails = new Button("Clear Game Details");
 		insets = new Insets(5,5, 5,5); //insets to set margin to nodes
 		//Button btViewInstr = new Button("Create Account");
 		//Button btLaunchCM = new Button("Create Account");
@@ -65,7 +86,7 @@ public class GUI extends Application{
 		lbTitle = new Label("WELCOME TO CITADEl OF STORMS");
 		lbDetails = new Label("GAME-DETAILS");
 		lbNavigation =  new Label("NAVIGATION");
-		btExit = new Button("Exit");
+		btExit = new Button("EXIT");
 		btNorth = new Button("N");
 		btNorth.setAlignment(Pos.BASELINE_CENTER);
 		btEast = new Button("E");
@@ -89,7 +110,7 @@ public class GUI extends Application{
 		hbTop.getChildren().add(lbTitle);
 		hbTop.setAlignment(Pos.CENTER);
 		
-		insets = new Insets(100, 10, 100, 10);
+		insets = new Insets(70, 10, 70, 10);
 		gpNav = new GridPane();
 		
 		
@@ -99,14 +120,14 @@ public class GUI extends Application{
 		//lbDetails.getStyleClass().addAll("hbox-htTop", "list-cell");
 		
 		 data.addAll(
-		             "Username:", "Curren-Room: ", "HealthPoint: ", "Gems:", "Moster defeated:"
+		              "Username:", "Curren-Room: ", "HealthPoint: ", "Gems:", "Moster defeated:"
 		            
 		        ); //This is where all the details of the player goes to.
 		 listView.setItems(data);
 		 listView.getStyleClass().addAll("hbox-htTop");
 		
 		
-		vbLeft.getChildren().addAll(lbDetails, listView);
+		//vbLeft.getChildren().addAll(lbDetails, listView);
 		vbLeft.getStyleClass().addAll("hbox-htTop", "vbox-vbLeft");
 		
 		//gpRight.getChildren().addAll(btNorth,hbWestEast, btSouth);
@@ -122,13 +143,17 @@ public class GUI extends Application{
 		
 		
 		hbBottom = new HBox();
+		//hbBottom.setSpacing(200);
+		//hbBottom.setPadding(new Insets (50,50,50,50));
+		//HBox.setMargin(hbBottom, new Insets(200,0,200,200));
 		hbBottom.getStyleClass().addAll("hbox-htTop", "hbox-hbBottom");
-		hbBottom.getChildren().addAll(btDetails, btLaunchCM, btViewInstructions, btExit, btNav);
-		hbBottom.setAlignment(Pos.BASELINE_CENTER);
+		hbBottom.getChildren().addAll(btDetails,btClearDetails, btLaunchCM, btViewInstructions, btExit, btNav, btClearNav);
+		hbBottom.setAlignment(Pos.CENTER);
+		
 		
 		
 		vbRight = new VBox();
-		vbRight.getChildren().addAll(lbNavigation, btUpperFloor, gpNav, btLowerFloor);
+		//vbRight.getChildren().addAll(lbNavigation, btUpperFloor, gpNav, btLowerFloor);
 		vbRight.getStyleClass().addAll("hbox-htTop", "vbox-vbRight");
 		//vbRight.setMargin(btUpperFloor, insets);
 		
@@ -140,6 +165,29 @@ public class GUI extends Application{
 		borderPane.setLeft(vbLeft);
 		borderPane.setRight(vbRight);
 		borderPane.setBottom(hbBottom);
+		
+		
+		
+		
+		btDetails.setOnAction(e -> {
+			showGameDetails();
+			
+			
+		});
+		
+
+		btNav.setOnAction(e -> {
+			showGameNav() ;
+		});
+		
+		btClearDetails.setOnAction(e -> {
+			clearGameDetails();
+		});
+		
+
+		btClearNav.setOnAction(e -> {
+			clearGameNav() ;
+		});
 		
 		
 		
@@ -155,5 +203,40 @@ public class GUI extends Application{
 	public static void main(String [] args) {
 		Application.launch(args);
 	}
+   
+	//THese are the methods that the button call whenever someting needs to get done....
+	public void showGameDetails() {
+		try {
+			txtErrorMsg.setText("MESSAGE: Click Clear when done"); 
+			vbLeft.getChildren().addAll( lbDetails, listView, txtErrorMsg);
+		} catch (Exception e) {
+			txtErrorMsg.setText("MESSAGE: Details is already active"); 
+			System.out.println(e);
+		}
+		
 
+	}
+	
+    public void showGameNav() {
+    	try {
+    		txtErrorMsg.setText("MESSAGE: Click Clear when done"); 
+    		vbRight.getChildren().addAll(lbNavigation, btUpperFloor, gpNav, btLowerFloor, txtErrorMsg);
+		}
+    	catch (Exception e) {
+
+    		txtErrorMsg.setText("MESSAGE: Nav. Bar is already active"); 
+    		
+    		System.out.println(e);
+	}
+    }
+    
+    public void clearGameDetails() {
+		vbLeft.getChildren().clear();
+
+	}
+	
+    public void clearGameNav() {
+		vbRight.getChildren().clear();
+
+	}
 }
