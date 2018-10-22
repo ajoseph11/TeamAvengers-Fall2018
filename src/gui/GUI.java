@@ -20,7 +20,7 @@ public class GUI extends Application{
     final private int windowHeight = 900; //height of window
    VBox vbCenter; // vertical pane in the center of the window's borderPane
    VBox vbLeft;  // vertical pane in the left  of the window's borderPane
-   GridPane gpNav;  // grid pane to palce the vaigation option east , west , north, and south
+   GridPane gpNav;  // grid pane to palce the navigation option east , west , north, and south
    VBox vbRight;//Right side of the game windows
    HBox hbTop;  // horizontal pane in the top of the window's borderPane
    HBox hbBottom; // horizontal pane in the bottom of the window's borderPane
@@ -36,8 +36,11 @@ public class GUI extends Application{
    Button btUpperFloor;
    Button btLowerFloor;
    Label lbDetails;
+   Label lbNavigation;
    Button btLaunchCM;
    Button btViewInstructions;
+   Button btNav;
+   Button btDetails;
    public static final ObservableList<String> data = 
    FXCollections.observableArrayList();
 	       
@@ -51,6 +54,8 @@ public class GUI extends Application{
 		listView.setPrefWidth(350);
 		//listView.setEditable(true);
 		//listView.setPrefSize(200, 250);
+		btNav = new Button("NAVIGATION");
+		btDetails = new Button("GAME-DETAILS");
 		insets = new Insets(5,5, 5,5); //insets to set margin to nodes
 		//Button btViewInstr = new Button("Create Account");
 		//Button btLaunchCM = new Button("Create Account");
@@ -59,6 +64,7 @@ public class GUI extends Application{
 		vbRight = new VBox();
 		lbTitle = new Label("WELCOME TO CITADEl OF STORMS");
 		lbDetails = new Label("GAME-DETAILS");
+		lbNavigation =  new Label("NAVIGATION");
 		btExit = new Button("Exit");
 		btNorth = new Button("N");
 		btNorth.setAlignment(Pos.BASELINE_CENTER);
@@ -83,12 +89,13 @@ public class GUI extends Application{
 		hbTop.getChildren().add(lbTitle);
 		hbTop.setAlignment(Pos.CENTER);
 		
-		insets = new Insets(140, 10, 140, 10);
+		insets = new Insets(100, 10, 100, 10);
 		gpNav = new GridPane();
 		
 		
 		vbLeft = new VBox();
 		lbDetails.setId("lbDetails");
+		lbNavigation.setId("lbNavigation");
 		//lbDetails.getStyleClass().addAll("hbox-htTop", "list-cell");
 		
 		 data.addAll(
@@ -116,12 +123,12 @@ public class GUI extends Application{
 		
 		hbBottom = new HBox();
 		hbBottom.getStyleClass().addAll("hbox-htTop", "hbox-hbBottom");
-		hbBottom.getChildren().addAll(btLaunchCM, btViewInstructions, btExit);
+		hbBottom.getChildren().addAll(btDetails, btLaunchCM, btViewInstructions, btExit, btNav);
 		hbBottom.setAlignment(Pos.BASELINE_CENTER);
 		
 		
 		vbRight = new VBox();
-		vbRight.getChildren().addAll(btUpperFloor, gpNav, btLowerFloor);
+		vbRight.getChildren().addAll(lbNavigation, btUpperFloor, gpNav, btLowerFloor);
 		vbRight.getStyleClass().addAll("hbox-htTop", "vbox-vbRight");
 		//vbRight.setMargin(btUpperFloor, insets);
 		
