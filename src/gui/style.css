@@ -91,3 +91,22 @@
 		
 	
 }
+
+#roomDesc, #monstDesc, #attackStatus{
+	-fx-background-color: rgba(138,6,81,0.6);
+	-fx-font-size: 18pt;
+	-fx-text-align: center;
+	
+	-fx-font-family: Serif;
+	-fx-text-fill: #FFFFFF;
+	
+}
+
+#playField{
+	-fx-background-image: url("../image/storm1.jpg");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: cover;
+	
+	-fx-fill-width: true;
+	
+}

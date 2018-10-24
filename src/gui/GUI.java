@@ -1,8 +1,5 @@
 package gui;
 
-import java.awt.Color;
-
-import javax.swing.Box;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -15,11 +12,12 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
-import javafx.scene.text.FontWeight;
+//import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
@@ -55,12 +53,15 @@ public class GUI extends Application{
    Text  txtErrorMsg;
    public static final ObservableList<String> data = 
    FXCollections.observableArrayList();
+   Controller controller;
+   VBox vbPlayField;
 	       
    ListView<String> listView;
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-		
+		//vbPlayField = controller.getVBox();
+		controller = new Controller();
 		txtErrorMsg = new Text();
 		txtErrorMsg.setId("#txtErrorMsg");
 		txtErrorMsg.setStrokeWidth(20);
@@ -161,7 +162,7 @@ public class GUI extends Application{
 		borderPane = new BorderPane();
 		borderPane.getStyleClass().add("borderPane");
 		borderPane.setTop(hbTop);
-		borderPane.setCenter(vbCenter);
+		borderPane.setCenter(controller.getVBox());
 		borderPane.setLeft(vbLeft);
 		borderPane.setRight(vbRight);
 		borderPane.setBottom(hbBottom);
@@ -170,23 +171,23 @@ public class GUI extends Application{
 		
 		
 		btDetails.setOnAction(e -> {
-			showGameDetails();
+			controller.showGameDetails();
 			
 			
 		});
 		
 
 		btNav.setOnAction(e -> {
-			showGameNav() ;
+			controller.showGameNav() ;
 		});
 		
 		btClearDetails.setOnAction(e -> {
-			clearGameDetails();
+			controller.clearGameDetails();
 		});
 		
 
 		btClearNav.setOnAction(e -> {
-			clearGameNav() ;
+			controller.clearGameNav() ;
 		});
 		
 		
@@ -203,40 +204,81 @@ public class GUI extends Application{
 	public static void main(String [] args) {
 		Application.launch(args);
 	}
-   
-	//THese are the methods that the button call whenever someting needs to get done....
-	public void showGameDetails() {
-		try {
-			txtErrorMsg.setText("MESSAGE: Click Clear when done"); 
-			vbLeft.getChildren().addAll( lbDetails, listView, txtErrorMsg);
-		} catch (Exception e) {
-			txtErrorMsg.setText("MESSAGE: Details is already active"); 
-			System.out.println(e);
+	
+	
+	class Controller{
+		
+		//THese are the methods that the button call whenever someting needs to get done....
+		public void showGameDetails() {
+			try {
+				txtErrorMsg.setText("MESSAGE: Click Clear when done"); 
+				vbLeft.getChildren().addAll( lbDetails, listView, txtErrorMsg);
+			} catch (Exception e) {
+				txtErrorMsg.setText("MESSAGE: Details is already active"); 
+				System.out.println(e);
+			}
+			
+
 		}
 		
+	    public void showGameNav() {
+	    	try {
+	    		txtErrorMsg.setText("MESSAGE: Click Clear when done"); 
+	    		vbRight.getChildren().addAll(lbNavigation, btUpperFloor, gpNav, btLowerFloor, txtErrorMsg);
+			}
+	    	catch (Exception e) {
 
-	}
-	
-    public void showGameNav() {
-    	try {
-    		txtErrorMsg.setText("MESSAGE: Click Clear when done"); 
-    		vbRight.getChildren().addAll(lbNavigation, btUpperFloor, gpNav, btLowerFloor, txtErrorMsg);
+	    		txtErrorMsg.setText("MESSAGE: Nav. Bar is already active"); 
+	    		
+	    		System.out.println(e);
 		}
-    	catch (Exception e) {
+	    }
+	    
+	    public void clearGameDetails() {
+			vbLeft.getChildren().clear();
 
-    		txtErrorMsg.setText("MESSAGE: Nav. Bar is already active"); 
-    		
-    		System.out.println(e);
-	}
-    }
-    
-    public void clearGameDetails() {
-		vbLeft.getChildren().clear();
+		}
+		
+	    public void clearGameNav() {
+			vbRight.getChildren().clear();
 
+		}
+	    
+	    public VBox getVBox() {
+	    	HBox top = new HBox();
+	    	top.setAlignment(Pos.CENTER);
+	    	HBox mid = new HBox();
+	    	mid.setAlignment(Pos.CENTER);
+	    	HBox base = new HBox();
+	    	base.setAlignment(Pos.CENTER);
+	    	
+			VBox vbPlayField = new VBox();
+			vbPlayField.setId("playField");
+		
+			Label roomDesc = new Label("Room Description ");
+			roomDesc.setId("roomDesc");
+			Label monstDesc = new Label("Monster Description ");
+			monstDesc.setId("monstDesc");
+			Label attackStatus = new Label("Attack Status ");
+			attackStatus.setId("attackStatus");
+			
+			
+			top.getChildren().add(roomDesc);
+			mid.getChildren().add(monstDesc);
+			base.getChildren().add(attackStatus);
+			vbPlayField.getChildren().addAll(top, mid, base);
+			VBox.setMargin(top, new Insets(2));
+			VBox.setMargin(mid, new Insets(2));
+			VBox.setMargin(base, new Insets(2));
+			return vbPlayField;
+	    	
+	    }
+		
+		
 	}
 	
-    public void clearGameNav() {
-		vbRight.getChildren().clear();
-
-	}
+	
+	
+   
+	
 }
