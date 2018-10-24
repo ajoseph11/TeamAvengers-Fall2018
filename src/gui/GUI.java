@@ -22,7 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 
 public class GUI extends Application{
-   final private int windowWidth = 1400; // width of Window
+   final private int windowWidth = 1500; // width of Window
     final private int windowHeight = 900; //height of window
    VBox vbCenter; // vertical pane in the center of the window's borderPane
    VBox vbLeft;  // vertical pane in the left  of the window's borderPane

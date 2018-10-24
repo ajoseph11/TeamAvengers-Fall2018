@@ -1,15 +1,21 @@
 package feature;
 
 public class Room {
-	public String getRoomDesc() {
-		return roomDesc;
+	private String roomDescription;
+	public Room(String roomDescription) {
+		super();
+		this.roomDescription = roomDescription;
 	}
-	public void setRoomDesc(String roomDesc) {
-		this.roomDesc = roomDesc;
+
+	public String getRoomDescription() {
+		return roomDescription;
 	}
-	private String roomDesc;
-	public Room(){
-		
+
+	public void setRoomDescription(String roomDescription) {
+		this.roomDescription = roomDescription;
 	}
+
+
+	
 
 }
