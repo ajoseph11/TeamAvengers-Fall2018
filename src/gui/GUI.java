@@ -1,6 +1,7 @@
 package gui;
 
 
+import feature.Room;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -162,7 +163,7 @@ public class GUI extends Application{
 		borderPane = new BorderPane();
 		borderPane.getStyleClass().add("borderPane");
 		borderPane.setTop(hbTop);
-		borderPane.setCenter(controller.getVBox());
+		borderPane.setCenter(controller.getVBox(0));
 		borderPane.setLeft(vbLeft);
 		borderPane.setRight(vbRight);
 		borderPane.setBottom(hbBottom);
@@ -172,7 +173,7 @@ public class GUI extends Application{
 		
 		btDetails.setOnAction(e -> {
 			controller.showGameDetails();
-			
+			System.out.println(btDetails.getId());
 			
 		});
 		
@@ -244,7 +245,9 @@ public class GUI extends Application{
 
 		}
 	    
-	    public VBox getVBox() {
+	    public VBox getVBox(int roomFrom) {
+	    	String roomDescription =  "";
+	    	Room room = new Room(roomDescription);
 	    	HBox top = new HBox();
 	    	top.setAlignment(Pos.CENTER);
 	    	HBox mid = new HBox();
@@ -271,6 +274,8 @@ public class GUI extends Application{
 			VBox.setMargin(mid, new Insets(2));
 			VBox.setMargin(base, new Insets(2));
 			return vbPlayField;
+			
+			
 	    	
 	    }
 		
